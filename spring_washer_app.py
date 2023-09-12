@@ -6,7 +6,7 @@ Reference: https://www.engineersedge.com/belleville_spring.htm
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import matplotlib as mpl
 import streamlit as st
 
@@ -74,7 +74,7 @@ def main():
     sigma = stress(x)
 
     # Plots ===================================================================
-    fig1, ax1 = plt.subplots(figsize=(12, 8))
+    fig1, ax1 = mpl.pyplot.subplots(figsize=(12, 8))
     ax1.plot(x, F, ls='-', lw=1.8, c='#0d3a94')
 
     ax1.grid(ls=':', c='k', lw=.7, alpha=.7)
@@ -83,7 +83,7 @@ def main():
     fig1.tight_layout()
 
     # Plots ===================================================================
-    fig2, ax2 = plt.subplots(figsize=(12, 8))
+    fig2, ax2 = mpl.pyplot.subplots(figsize=(12, 8))
 
     ax2.plot(x, k, ls='-', lw=1.8, c='#0d3a94')
     ax2.set_ylabel('Stiffness [N/m]')
@@ -93,7 +93,7 @@ def main():
     fig2.tight_layout()
 
     # Plots ===================================================================
-    fig3, ax3 = plt.subplots(figsize=(12, 8))
+    fig3, ax3 = mpl.pyplot.subplots(figsize=(12, 8))
 
     ax3.plot(x, sigma, ls='-', lw=1.8, c='#0d3a94')
     ax3.set_ylabel('Stress [Pa]')
