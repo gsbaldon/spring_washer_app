@@ -6,9 +6,14 @@ Reference: https://www.engineersedge.com/belleville_spring.htm
 """
 
 import numpy as np
-import altair as alt
-import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 import streamlit as st
+
+# mpl.rcParams['font.family'] = 'serif'
+# mpl.rcParams['font.serif'] = 'Times New Roman'
+# mpl.rcParams['mathtext.fontset'] = 'stix'
+mpl.rcParams['font.size'] = 18
 
 
 def force(xx):
@@ -67,42 +72,35 @@ def main():
     F = force(x)
     k = stiffness(x)
     sigma = stress(x)
-    df = pd.DataFrame({'Deflection [m]': x,
-                       'Force [N]': F,
-                       'Stiffness [N/m]': k,
-                       'Stress [Pa]': sigma
-                       })
 
     # Plots ===================================================================
-    fig1 = alt.Chart(df).mark_line().encode(x='Deflection [m]', y='Force [N]').interactive()
-    fig2 = alt.Chart(df).mark_line().encode(x='Deflection [m]', y='Stiffness [N/m]').interactive()
-    fig3 = alt.Chart(df).mark_line().encode(x='Deflection [m]', y='Stress [Pa]').interactive()
-    # ax1.plot(x, F, ls='-', lw=1.8, c='#0d3a94')
-    #
-    # ax1.grid(ls=':', c='k', lw=.7, alpha=.7)
-    # ax1.set_xlabel('Deflection [m]')
-    # ax1.set_ylabel('Force [N]')
-    # fig1.tight_layout()
+    fig1, ax1 = plt.subplots(figsize=(12, 8))
+    ax1.plot(x, F, ls='-', lw=1.8, c='#0d3a94')
+
+    ax1.grid(ls=':', c='k', lw=.7, alpha=.7)
+    ax1.set_xlabel('Deflection [m]')
+    ax1.set_ylabel('Force [N]')
+    fig1.tight_layout()
 
     # Plots ===================================================================
-    # fig2, ax2 = plt.subplots(figsize=(12, 8))
-    #
-    # ax2.plot(x, k, ls='-', lw=1.8, c='#0d3a94')
-    # ax2.set_ylabel('Stiffness [N/m]')
-    #
-    # ax2.grid(ls=':', c='k', lw=.7, alpha=.7)
-    # ax2.set_xlabel('Deflection [m]')
-    # fig2.tight_layout()
-    #
-    # # Plots ===================================================================
-    # fig3, ax3 = plt.subplots(figsize=(12, 8))
-    #
-    # ax3.plot(x, sigma, ls='-', lw=1.8, c='#0d3a94')
-    # ax3.set_ylabel('Stress [Pa]')
-    #
-    # ax3.grid(ls=':', c='k', lw=.7, alpha=.7)
-    # ax3.set_xlabel('Deflection [m]')
-    # fig3.tight_layout()
+    fig2, ax2 = plt.subplots(figsize=(12, 8))
+
+    ax2.plot(x, k, ls='-', lw=1.8, c='#0d3a94')
+    ax2.set_ylabel('Stiffness [N/m]')
+
+    ax2.grid(ls=':', c='k', lw=.7, alpha=.7)
+    ax2.set_xlabel('Deflection [m]')
+    fig2.tight_layout()
+
+    # Plots ===================================================================
+    fig3, ax3 = plt.subplots(figsize=(12, 8))
+
+    ax3.plot(x, sigma, ls='-', lw=1.8, c='#0d3a94')
+    ax3.set_ylabel('Stress [Pa]')
+
+    ax3.grid(ls=':', c='k', lw=.7, alpha=.7)
+    ax3.set_xlabel('Deflection [m]')
+    fig3.tight_layout()
 
     return fig1, fig2, fig3
 
@@ -136,4 +134,4 @@ figs = main()
 tabs = st.tabs(['Force', 'Stiffness', 'Stress'])
 for i in range(3):
     with tabs[i]:
-        st.altair_chart(figs[i], theme='streamlit', use_container_width=True)
+        st.pyplot(figs[i])
