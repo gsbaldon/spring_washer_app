@@ -74,9 +74,9 @@ def main():
                        })
 
     # Plots ===================================================================
-    fig1 = alt.Chart(df).mark_line().encode(x='Deflection [m]', y='Force [N]').interactive()
-    fig2 = alt.Chart(df).mark_line().encode(x='Deflection [m]', y='Stiffness [N/m]').interactive()
-    fig3 = alt.Chart(df).mark_line().encode(x='Deflection [m]', y='Stress [Pa]').interactive()
+    fig1 = alt.Chart(df).mark_line().encode(x='Deflection [m]:Q', y='Force [N]:Q').interactive()
+    fig2 = alt.Chart(df).mark_line().encode(x='Deflection [m]:Q', y='Stiffness [N/m]:Q').interactive()
+    fig3 = alt.Chart(df).mark_line().encode(x='Deflection [m]:Q', y='Stress [Pa]:Q').interactive()
     # ax1.plot(x, F, ls='-', lw=1.8, c='#0d3a94')
     #
     # ax1.grid(ls=':', c='k', lw=.7, alpha=.7)
