@@ -14,7 +14,7 @@ import streamlit as st
 # mpl.rcParams['font.family'] = 'serif'
 # mpl.rcParams['font.serif'] = 'Times New Roman'
 # mpl.rcParams['mathtext.fontset'] = 'stix'
-mpl.rcParams['font.size'] = 18
+# mpl.rcParams['font.size'] = 18
 
 
 def force(xx):
