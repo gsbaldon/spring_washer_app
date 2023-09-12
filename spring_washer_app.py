@@ -7,7 +7,7 @@ Reference: https://www.engineersedge.com/belleville_spring.htm
 
 import numpy as np
 # import matplotlib.pyplot as plt
-import matplotlib as mpl
+# import matplotlib as mpl
 import streamlit as st
 
 # mpl.rcParams['font.family'] = 'serif'
