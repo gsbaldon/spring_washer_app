@@ -36,12 +36,6 @@ def main():
     global E, t, nu, D, d, H
     global beta, gamma, f1, f2, s1
     # Constants ===============================================================
-    # E = 210e9       # Young's modulus [Pa]
-    # t = .9e-3       # Washer thickness [m]
-    # nu = 0.29       # Poisson's ratio [-]
-    # D = 16e-3       # Outside diameter [m]
-    # d = 8.2e-3      # Inside diameter [m]
-    # H = 1.25e-3     # Washer height [m]
     h = H - t       # Height of truncated cone [m]
     delta = D/d     # Diameter ratio [-]
 
@@ -67,50 +61,27 @@ def main():
     F = force(x)
     k = stiffness(x)
     sigma = stress(x)
-    df = pd.DataFrame({'Deflection [m]': x,
-                       'Force [N]': F,
-                       'Stiffness [N/m]': k,
-                       'Stress [Pa]': sigma
+    df = pd.DataFrame({'Deflection (m)': x,
+                       'Force (N)': F,
+                       'Stiffness (N/m)': k,
+                       'Stress (Pa)': sigma
                        })
 
     # Plots ===================================================================
-    fig1 = alt.Chart(df).mark_line().encode(x='Deflection [m]:Q', y='Force [N]:Q').interactive()
-    fig2 = alt.Chart(df).mark_line().encode(x='Deflection [m]:Q', y='Stiffness [N/m]:Q').interactive()
-    fig3 = alt.Chart(df).mark_line().encode(x='Deflection [m]:Q', y='Stress [Pa]:Q').interactive()
-    # ax1.plot(x, F, ls='-', lw=1.8, c='#0d3a94')
-    #
-    # ax1.grid(ls=':', c='k', lw=.7, alpha=.7)
-    # ax1.set_xlabel('Deflection [m]')
-    # ax1.set_ylabel('Force [N]')
-    # fig1.tight_layout()
+    fig1 = alt.Chart(df).mark_line().encode(
+           alt.X('Deflection (m):Q'), alt.Y('Force (N):Q').scale(zero=False)).interactive()
+    fig2 = alt.Chart(df).mark_line().encode(
+           alt.X('Deflection (m):Q'), alt.Y('Stiffness (N/m)').scale(zero=False)).interactive()
+    fig3 = alt.Chart(df).mark_line().encode(
+           alt.X('Deflection (m):Q'), alt.Y('Stress (Pa)').scale(zero=False)).interactive()
 
-    # Plots ===================================================================
-    # fig2, ax2 = plt.subplots(figsize=(12, 8))
-    #
-    # ax2.plot(x, k, ls='-', lw=1.8, c='#0d3a94')
-    # ax2.set_ylabel('Stiffness [N/m]')
-    #
-    # ax2.grid(ls=':', c='k', lw=.7, alpha=.7)
-    # ax2.set_xlabel('Deflection [m]')
-    # fig2.tight_layout()
-    #
-    # # Plots ===================================================================
-    # fig3, ax3 = plt.subplots(figsize=(12, 8))
-    #
-    # ax3.plot(x, sigma, ls='-', lw=1.8, c='#0d3a94')
-    # ax3.set_ylabel('Stress [Pa]')
-    #
-    # ax3.grid(ls=':', c='k', lw=.7, alpha=.7)
-    # ax3.set_xlabel('Deflection [m]')
-    # fig3.tight_layout()
-
-    return fig1, fig2, fig3
+    return [fig1, fig2, fig3]
 
 
 # Streamlit ===================================================================
 # Title and main text -------------------------------------
 st.title('Spring washer mechanical properties')
-st.text('This is a program to calculate the force, the stiffness'
+st.text('This is a program to calculate the force, the stiffness,'
         ' and the stresses\nin a spring washer as a function'
         ' of its geometry, material and deflection.')
 st.image('spring_washer_dimensions.jpg',
