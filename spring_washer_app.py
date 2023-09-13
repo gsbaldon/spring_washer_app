@@ -89,17 +89,17 @@ st.image('spring_washer_dimensions.jpg',
 
 # Inputs --------------------------------------------------
 st.header('Inputs')
-E = st.number_input('Elasticity modulus [GPa]', min_value=0.01, max_value=1e5,
+E = st.number_input('E: Elasticity modulus [GPa]', min_value=0.01, max_value=1e5,
                     value=210.0, step=10.0)*1e9
-t = st.number_input('Washer material thickness [mm]', min_value=0.01, max_value=5.0,
+t = st.number_input('t: Washer material thickness [mm]', min_value=0.01, max_value=5.0,
                     value=.9, step=0.1)*1e-3
-nu = st.number_input('Poisson\'s ratio [-]', min_value=0.01, max_value=3.0,
+nu = st.number_input('$\nu$: Poisson\'s ratio [-]', min_value=0.01, max_value=3.0,
                      value=0.29, step=0.01)
-D = st.number_input('Outer diameter [mm]', min_value=1.0, max_value=100.0,
+D = st.number_input('D: Outer diameter [mm]', min_value=1.0, max_value=100.0,
                     value=16.0, step=0.01)*1e-3
-d = st.number_input('Inner diameter [mm]', min_value=0.01, max_value=D*1e3-0.01,
+d = st.number_input('d: Inner diameter [mm]', min_value=0.01, max_value=D*1e3-0.01,
                     value=8.2, step=0.01)*1e-3
-H = st.number_input('Washer total height [mm]', min_value=t+0.01, max_value=10.0,
+H = st.number_input('H: Washer total height [mm]', min_value=t+0.01, max_value=10.0,
                     value=1.25, step=0.01)*1e-3
 
 # Figure --------------------------------------------------
